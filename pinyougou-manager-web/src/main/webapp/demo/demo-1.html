@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>angularJS-DEMO</title>
+    <script src="angular.min.js"></script>
+    <script>
+
+        //定义模块名称
+        var app = angular.module("myApp",[]);
+
+        //创建控制器
+        app.controller("controller",function ($scope) {
+
+            $scope.add=function () {
+                return parseInt($scope.a) + parseInt($scope.b)
+            }
+
+        });
+
+    </script>
+</head>
+<body ng-app="myApp" ng-init="name='小明'" ng-controller="controller">
+
+    {{100+10}}
+    <input type="text" ng-model="name">
+    {{name}}
+    <hr/>
+
+    加法：
+    <input type="text" ng-model="a">
+    <input type="text" ng-model="b">
+    {{add()}}
+
+</body>
+</html>

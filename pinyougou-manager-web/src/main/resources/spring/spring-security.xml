@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <!--设置不拦截页面-->
+    <http pattern="/*.html" security="none"></http>
+    <http pattern="/css/**" security="none"></http>
+    <http pattern="/img/**" security="none"></http>
+    <http pattern="/js/**" security="none"></http>
+    <http pattern="/plugins/**" security="none"></http>
+
+    <!--设置页面拦截规则-->
+    <http use-expressions="false" auto-config="true">
+
+        <!--权限拦截-->
+        <intercept-url pattern="/**" access="ROLE_ADMIN"></intercept-url>
+
+        <!--登陆属性相关-->
+        <form-login login-page="/login.html" default-target-url="/admin/index.html"
+                    authentication-failure-url="/login.html" always-use-default-target="true"></form-login>
+
+        <!--设置不使用请求头加密-->
+        <csrf disabled="true"></csrf>
+
+        <!--内部页面默认拦截 设置为允许状态-->
+        <headers>
+            <frame-options policy="SAMEORIGIN"></frame-options>
+        </headers>
+
+        <!--设置注销登陆-->
+        <logout logout-success-url="/login.html" ></logout>
+
+    </http>
+
+    <!--认证管理器-->
+    <authentication-manager>
+        <authentication-provider>
+            <user-service>
+                <user name="admin" authorities="ROLE_ADMIN" password="123456"></user>
+                <user name="sunwukong" authorities="ROLE_ADMIN" password="dasheng"></user>
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
+
+
+</beans:beans>
