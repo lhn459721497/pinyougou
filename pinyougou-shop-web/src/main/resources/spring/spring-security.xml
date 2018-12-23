@@ -20,7 +20,7 @@
 		<!-- 当前用户必须有ROLE_USER的角色 才可以访问根目录及所属子目录的资源 -->
 		<intercept-url pattern="/**" access="ROLE_SELLER"/>
 		<!-- 开启表单登陆功能 -->
-		<form-login login-page="/wrong/shoplogin.html" default-target-url="/admin/index.html" authentication-failure-url="/wrong/shoplogin.html" always-use-default-target="true"/>
+		<form-login login-page="/shoplogin.html" default-target-url="/admin/index.html" authentication-failure-url="/shoplogin.html" always-use-default-target="true"/>
 		<csrf disabled="true"/>
 		<headers>
 			<frame-options policy="SAMEORIGIN"/>

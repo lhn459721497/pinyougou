@@ -76,5 +76,46 @@ app.controller('itemCatController' ,function($scope,$controller   ,itemCatServic
 			}			
 		);
 	}
+
+	//设置面包屑级别
+    $scope.grade=1;
+
+	//设置级别
+    $scope.setGrade=function (value) {
+        $scope.grade = value;
+    }
+
+    //读取列表
+    $scope.selectList=function (p_entity) {
+
+        if ($scope.grade == 1){
+            $scope.entity_1 = null;
+            $scope.entity_2 = null;
+
+        }
+        if($scope.grade==2){//如果为2级
+            $scope.entity_1=p_entity;
+            $scope.entity_2=null;
+        }
+        if($scope.grade==3){//如果为3级
+            $scope.entity_2=p_entity;
+        }
+
+        $scope.findByParentId(p_entity.id);
+
+    }
+
+	//根据父级id查询子级数据
+	$scope.findByParentId=function (parentId) {
+
+		itemCatService.findByParentId(parentId).success(
+
+			function (response) {
+				$scope.list = response;
+            }
+
+		)
+
+    }
     
 });	
