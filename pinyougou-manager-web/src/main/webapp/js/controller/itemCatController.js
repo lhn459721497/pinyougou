@@ -32,7 +32,11 @@ app.controller('itemCatController' ,function($scope,$controller   ,itemCatServic
 	}
 	
 	//保存 
-	$scope.save=function(){				
+	$scope.save=function(){
+
+	    //保存时赋予上级id
+        $scope.entity.parentId = $scope.parentId;
+
 		var serviceObject;//服务层对象  				
 		if($scope.entity.id!=null){//如果有ID
 			serviceObject=itemCatService.update( $scope.entity ); //修改  
@@ -43,7 +47,7 @@ app.controller('itemCatController' ,function($scope,$controller   ,itemCatServic
 			function(response){
 				if(response.success){
 					//重新查询 
-		        	$scope.reloadList();//重新加载
+		        	$scope.findByParentId($scope.parentId);//重新加载
 				}else{
 					alert(response.message);
 				}
@@ -105,8 +109,13 @@ app.controller('itemCatController' ,function($scope,$controller   ,itemCatServic
 
     }
 
+    //定义parentId记录上一级的id
+    $scope.parentId=0;
+
 	//根据父级id查询子级数据
 	$scope.findByParentId=function (parentId) {
+
+	    $scope.parentId=parentId;
 
 		itemCatService.findByParentId(parentId).success(
 

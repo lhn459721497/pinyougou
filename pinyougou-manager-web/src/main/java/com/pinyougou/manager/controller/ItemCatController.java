@@ -42,12 +42,13 @@ public class ItemCatController {
 	}
 	
 	/**
-	 * 增加
+	 * 增加   商家后台商品录入
 	 * @param itemCat
 	 * @return
 	 */
 	@RequestMapping("/add")
 	public Result add(@RequestBody TbItemCat itemCat){
+
 		try {
 			itemCatService.add(itemCat);
 			return new Result(true, "增加成功");
