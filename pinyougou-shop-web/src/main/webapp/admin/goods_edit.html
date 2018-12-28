@@ -32,7 +32,7 @@
 	<!--引入angularJS-->
 	<script type="text/javascript" src="../js/base.js"></script>
 	<!--引入select2插件-->
-	<script type="text/javascript" src="../plugins/select2/angular-select2.js"></script>
+	<script type="text/javascript" src="../plugins/select2/select2.min.js"></script>
 
     <script type="text/javascript" src="../js/service/uploadService.js"></script>
 	<script type="text/javascript" src="../js/service/goodsService.js"></script>
@@ -181,7 +181,7 @@
 					                        <tr >
 
 											    <th class="sorting">颜色</th>
-                                                <th class="sorting">图片</th>                                               </th>
+                                                <th class="sorting">图片</th>
 												<th class="sorting">操作</th>
                                             </tr>
 							            </thead>
@@ -237,7 +237,8 @@
 					                               
 					                            <span ng-repeat="option in pojo.options">
 					                            	<input  type="checkbox"
-														ng-click="updateSpecAttribute($event , pojo.text , option.optionName);createItemList()">{{option.optionName}}
+														ng-click="updateSpecAttribute($event , pojo.text , option.optionName);createItemList()"
+                                                        ng-checked="checkAttributeValue(pojo.text,option.optionName)">{{option.optionName}}
 					                            </span>  	
 
 					                            	
@@ -306,7 +307,7 @@
                    </div>
                   <div class="btn-toolbar list-toolbar">
 				      <button class="btn btn-primary" ng-click="save()"><i class="fa fa-save"></i>保存</button>
-				      <button class="btn btn-default" >返回列表</button>
+					  <a href="goods.html" class="btn btn-default" >返回列表</a>
 				  </div>
 			
             </section>

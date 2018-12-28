@@ -9,10 +9,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>pinyougou-manager-web</artifactId>
+    <artifactId>pinyougou-content-service</artifactId>
     <packaging>war</packaging>
 
     <dependencies>
+
         <!-- Spring -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -87,41 +88,13 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
-        <!--广告接口依赖-->
         <dependency>
             <groupId>com.pinyougou</groupId>
             <artifactId>pinyougou-content-interface</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.pinyougou</groupId>
-            <artifactId>pinyougou-dao</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
-        <!--权限控制Security-->
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-config</artifactId>
-        </dependency>
-        <!--<dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-core</artifactId>
-            <version>4.0.3.RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-taglibs</artifactId>
-            <version>4.0.3.RELEASE</version>
-        </dependency>-->
-
     </dependencies>
-
 
     <build>
         <plugins>
@@ -131,12 +104,11 @@
                 <version>2.2</version>
                 <configuration>
                     <!-- 指定端口 -->
-                    <port>9101</port>
+                    <port>9002</port>
                     <!-- 请求路径 -->
                     <path>/</path>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-
 </project>

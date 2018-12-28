@@ -8,6 +8,8 @@
         <outputRelativeToContentRoot value="true" />
         <module name="fastFSD" />
         <module name="pinyougou-commom" />
+        <module name="pinyougou-content-interface" />
+        <module name="pinyougou-content-service" />
         <module name="pinyougou-dao" />
         <module name="pinyougou-manager-web" />
         <module name="pinyougou-pojo" />
@@ -15,11 +17,14 @@
         <module name="pinyougou-sellergoods-service" />
         <module name="pinyougou-shop-web" />
         <module name="pinyougou-show-web" />
+        <module name="pinyougoucontentinterface" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="9">
       <module name="fastFSD" target="9" />
       <module name="pinyougou-commom" target="1.7" />
+      <module name="pinyougou-content-interface" target="1.7" />
+      <module name="pinyougou-content-service" target="1.7" />
       <module name="pinyougou-dao" target="1.7" />
       <module name="pinyougou-manager-web" target="1.7" />
       <module name="pinyougou-parent" target="1.7" />
@@ -28,6 +33,7 @@
       <module name="pinyougou-sellergoods-service" target="1.7" />
       <module name="pinyougou-shop-web" target="1.7" />
       <module name="pinyougou-show-web" target="1.7" />
+      <module name="pinyougoucontentinterface" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
