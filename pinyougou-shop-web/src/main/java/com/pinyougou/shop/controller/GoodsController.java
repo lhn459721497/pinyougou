@@ -139,7 +139,7 @@ public class GoodsController {
 	 * 更新状态
 	 * @return
 	 */
-	@RequestMapping("updateStatus")
+	@RequestMapping("/updateStatus")
 	public Result updateStatus(Long[] ids , String status){
 
 		try {

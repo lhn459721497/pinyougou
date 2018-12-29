@@ -51,7 +51,7 @@ app.controller('goodsController' ,function($scope,$controller   ,goodsService , 
 		);				
 	}
 	
-	 
+	 $scope.selectIds=[];
 	//批量删除 
 	$scope.dele=function(){			
 		//获取选中的复选框			
@@ -92,6 +92,29 @@ app.controller('goodsController' ,function($scope,$controller   ,goodsService , 
 					$scope.itemCatList[response[i].id]=response[i].name;
 
 				}
+            }
+
+		)
+
+    }
+    
+    
+    //更新状态
+	$scope.updateStatus=function (status) {
+
+		goodsService.updateStatus($scope.selectIds,status).success(
+
+			function (response) {
+
+				if (response.success){
+					//成功
+					$scope.reloadList();
+					$scope.selectIds=[];
+				} else {
+					//失败
+					alert(response.message);
+				}
+
             }
 
 		)

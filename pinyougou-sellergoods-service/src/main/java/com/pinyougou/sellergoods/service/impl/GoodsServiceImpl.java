@@ -16,6 +16,7 @@ import com.pinyougou.pojo.TbGoodsExample.Criteria;
 import com.pinyougou.sellergoods.service.GoodsService;
 
 import entity.PageResult;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 服务实现层
@@ -23,6 +24,7 @@ import entity.PageResult;
  *
  */
 @Service
+@Transactional
 public class GoodsServiceImpl implements GoodsService {
 
 	@Autowired
@@ -243,6 +245,11 @@ public class GoodsServiceImpl implements GoodsService {
 	@Override
 	public void delete(Long[] ids) {
 		for(Long id:ids){
+
+		    TbGoods goods = goodsMapper.selectByPrimaryKey(id);
+
+		    goods.setIsDelete("1");
+
 			goodsMapper.deleteByPrimaryKey(id);
 		}		
 	}
@@ -254,6 +261,8 @@ public class GoodsServiceImpl implements GoodsService {
 		
 		TbGoodsExample example=new TbGoodsExample();
 		Criteria criteria = example.createCriteria();
+		criteria.andIsDeleteIsNull();
+
 		if (goods.getSellerId() != null && goods.getSellerId().length() > 0){
             criteria.andSellerIdEqualTo(goods.getSellerId());
         } /*else {*/
