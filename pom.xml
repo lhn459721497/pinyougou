@@ -18,6 +18,8 @@
         <module>pinyougou-shop-web</module>
         <module>pinyougou-content-interface</module>
         <module>pinyougou-content-service</module>
+        <module>pinyougou-portal-web</module>
+        <module>pinyougou-search-interface</module>
     </modules>
 
     <!-- 集中定义依赖版本号 -->
