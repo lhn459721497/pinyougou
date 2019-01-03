@@ -25,11 +25,7 @@ public class ContentController {
 
         List<TbContent> list = contentService.findByCategoryId(categoryId);
 
-        if (list!=null){
-            return list;
-        }
-
-        return null;
+        return list;
 
     }
 
