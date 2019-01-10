@@ -24,6 +24,14 @@
         <module>pinyougou-search-web</module>
         <module>pinyougou-solr-util</module>
         <module>pinyougou-page-interface</module>
+        <module>pinyougou-page-service</module>
+        <module>pinyougou-page-web</module>
+        <module>springjms_producer</module>
+        <module>springjms_consumer</module>
+        <module>itcast_sms</module>
+        <module>pinyougou-user-interface</module>
+        <module>pinyougou-user-service</module>
+        <module>pinyougou-user-web</module>
     </modules>
 
     <!-- 集中定义依赖版本号 -->
@@ -280,6 +288,13 @@
                 <groupId>commons-fileupload</groupId>
                 <artifactId>commons-fileupload</artifactId>
                 <version>1.3.1</version>
+            </dependency>
+
+            <!--jms客户端-->
+            <dependency>
+                <groupId>org.apache.activemq</groupId>
+                <artifactId>activemq-client</artifactId>
+                <version>5.13.4</version>
             </dependency>
 
         </dependencies>

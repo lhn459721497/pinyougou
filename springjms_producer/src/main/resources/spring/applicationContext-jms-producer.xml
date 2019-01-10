@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.itheima.demo"></context:component-scan>
+
+    <!--连接工厂配置 生产connection-->
+    <bean id="targetConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="tcp://192.168.25.128:61616"></property>
+    </bean>
+
+    <!--spring用于管理connectionFactory 的 connectionFacotry-->
+    <bean id="connectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">
+
+        <!--目标factory对应真实的可以产生jms的factory-->
+        <property name="targetConnectionFactory" ref="targetConnectionFactory"></property>
+
+    </bean>
+
+    <!--spring提供工具类 可以进行消息发送/接收等-->
+    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+
+        <!--factory对应spring提供factory-->
+        <property name="connectionFactory" ref="connectionFactory"></property>
+
+    </bean>
+
+    <!--队列目的地，点对点文本信息-->
+    <bean id="queueTextDestination" class="org.apache.activemq.command.ActiveMQQueue">
+
+        <constructor-arg value="queue_text"></constructor-arg>
+
+    </bean>
+
+    <!--订阅模式文本信息-->
+    <bean id="topicTextDestination" class="org.apache.activemq.command.ActiveMQTopic">
+
+        <constructor-arg value="topic_text"></constructor-arg>
+
+    </bean>
+
+</beans>

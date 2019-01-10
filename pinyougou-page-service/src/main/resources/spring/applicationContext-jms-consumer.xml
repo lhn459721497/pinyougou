@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--生产connection的factory-->
+    <bean id="targetConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+
+        <property name="brokerURL" value="tcp://192.168.25.128:61616"></property>
+
+    </bean>
+
+    <!--spring管理factory的factory-->
+    <bean id="connectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">
+
+        <property name="targetConnectionFactory" ref="targetConnectionFactory"></property>
+
+    </bean>
+
+    <!--队列目的地订阅文本信息-->
+    <bean id="topicPageDestination" class="org.apache.activemq.command.ActiveMQTopic">
+        <constructor-arg value="pinyougou_topic_page"></constructor-arg>
+    </bean>
+
+    <!--队列目的地 订阅模式 删除-->
+    <bean id="topicPageDeleteDestination" class="org.apache.activemq.command.ActiveMQTopic">
+        <constructor-arg value="pinyougou_topic_page_delete"></constructor-arg>
+    </bean>
+
+    <!--我的监听类-->
+    <bean id="pageListener" class="com.pinyougou.page.service.impl.PageListener">
+
+    </bean>
+
+    <!--我的监听类-->
+    <bean id="pageDeleteListener" class="com.pinyougou.page.service.impl.PageDeleteListener">
+
+    </bean>
+
+    <!--消息监听容器-->
+    <bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="connectionFactory"></property>
+        <property name="destination" ref="topicPageDestination"></property>
+        <property name="messageListener" ref="pageListener"></property>
+    </bean>
+
+    <!--消息监听容器（删除）-->
+    <bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="connectionFactory"></property>
+        <property name="destination" ref="topicPageDestination"></property>
+        <property name="messageListener" ref="pageDeleteListener"></property>
+    </bean>
+
+
+</beans>

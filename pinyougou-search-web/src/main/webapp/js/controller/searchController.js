@@ -66,7 +66,8 @@ app.controller("searchController",function ($scope , $location , searchService) 
         //最后页码
         var maxPageNo = $scope.resultMap.totalPages;
         //开始页码
-        var firstPage = 1 ;
+        var firstPage = 1254245
+
         //截至页码
         var lastPage = maxPageNo ;
 

@@ -7,11 +7,15 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="fastFSD" />
+        <module name="itcast_sms" />
         <module name="pinyougou-commom" />
         <module name="pinyougou-content-interface" />
         <module name="pinyougou-content-service" />
         <module name="pinyougou-dao" />
         <module name="pinyougou-manager-web" />
+        <module name="pinyougou-page-interface" />
+        <module name="pinyougou-page-service" />
+        <module name="pinyougou-page-web" />
         <module name="pinyougou-pojo" />
         <module name="pinyougou-portal-web" />
         <module name="pinyougou-search-interface" />
@@ -22,16 +26,26 @@
         <module name="pinyougou-shop-web" />
         <module name="pinyougou-show-web" />
         <module name="pinyougou-solr-util" />
+        <module name="pinyougou-user-interface" />
+        <module name="pinyougou-user-service" />
+        <module name="pinyougou-user-web" />
         <module name="pinyougoucontentinterface" />
+        <module name="springBootDemo" />
+        <module name="springjms_consumer" />
+        <module name="springjms_producer" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="9">
       <module name="fastFSD" target="9" />
+      <module name="itcast_sms" target="9" />
       <module name="pinyougou-commom" target="1.7" />
       <module name="pinyougou-content-interface" target="1.7" />
       <module name="pinyougou-content-service" target="1.7" />
       <module name="pinyougou-dao" target="1.7" />
       <module name="pinyougou-manager-web" target="1.7" />
+      <module name="pinyougou-page-interface" target="1.7" />
+      <module name="pinyougou-page-service" target="1.7" />
+      <module name="pinyougou-page-web" target="1.7" />
       <module name="pinyougou-parent" target="1.7" />
       <module name="pinyougou-pojo" target="1.7" />
       <module name="pinyougou-portal-web" target="1.7" />
@@ -43,7 +57,13 @@
       <module name="pinyougou-shop-web" target="1.7" />
       <module name="pinyougou-show-web" target="1.7" />
       <module name="pinyougou-solr-util" target="1.7" />
+      <module name="pinyougou-user-interface" target="1.7" />
+      <module name="pinyougou-user-service" target="1.7" />
+      <module name="pinyougou-user-web" target="1.7" />
       <module name="pinyougoucontentinterface" target="1.7" />
+      <module name="springBootDemo" target="9" />
+      <module name="springjms_consumer" target="1.7" />
+      <module name="springjms_producer" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

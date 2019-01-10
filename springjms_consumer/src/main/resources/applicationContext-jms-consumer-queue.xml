@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--可以生产connection的factory-->
+    <bean id="targetConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+
+        <property name="brokerURL" value="tcp://192.168.25.128:61616"></property>
+        
+    </bean>
+
+    <!--spring管理factory的factory-->
+    <bean id="connectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">
+
+        <property name="targetConnectionFactory" ref="targetConnectionFactory"></property>
+
+    </bean>
+
+    <!--队列目的地，点对点 文本信息-->
+    <bean id="queneTextDestination" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg value="queue_text"></constructor-arg>
+    </bean>
+
+    <!--监听类-->
+    <bean id="myMessageListener" class="com.itheima.demo.MyMessageListener"></bean>
+
+    <!--消息监听容器-->
+    <bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+
+        <property name="connectionFactory" ref="connectionFactory"></property>
+        <property name="destination" ref="queneTextDestination"></property>
+        <property name="messageListener" ref="myMessageListener"></property>
+
+    </bean>
+
+</beans>
