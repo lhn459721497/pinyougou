@@ -193,7 +193,7 @@
 							<div class="fl">
 								<ul class="btn-choose unstyled">
 									<li>
-										<a href="cart.html" class="sui-btn  btn-danger addshopcar"
+										<a class="sui-btn  btn-danger addshopcar"
 												ng-click="addToCart()">加入购物车</a>
 									</li>
 								</ul>

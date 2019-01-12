@@ -1,107 +1,118 @@
-//商品详情页（控制层）
-app.controller("itemController",function($scope){
-	
-	//数量操作
-	$scope.addNum=function(x){
-		
-		$scope.num = $scope.num + x ;
-		
-		if($scope.num < 1){
-			$scope.num = 1 ;
-		}
-		
-	}
-	
-	//========================================================
-	//初始化规格选择
-	$scope.specificationItems={};
-	
-	//用户选择规格
-	$scope.selectSpecification=function( name , value ){
-		
-		$scope.specificationItems[name]=value;
-		
-		//读取sku
-		searchSku();
-		
-	}
-	
-	//判断规格选项是否被用户选中
-	$scope.isSelected=function( name , value ){
-		
-		if($scope.specificationItems[name] == value){
-			return true;
-		}
-		
-		return false ;
-		
-	}
-	
-	
-	//===========================================================
-	//加载默认sku
-	$scope.loadSku=function(){
-		
-		$scope.sku=skuList[0];
-		
-		$scope.specificationItems=JSON.parse(JSON.stringify($scope.sku.spec));
-		
-	}
-	
-	
-	//匹配两个对象，验证是否为选中
-	matchObject=function(map1,map2){
-		
-		for (var k in map1){
-			
-			if(map1[k] != map2[k]){
-				return false;
-			}
-			
-		}
-		
-		for (var k in map2){
-			
-			if(map2[k] != map1[k]){
-				return false;
-			}
-			
-		}
-		
-		return true;
-		
-	}
-	
-	//查询当前选中SKU
-	searchSku=function(){
-		
-		for(var i = 0 ; i < skuList.length ; i++){
-			
-			if(matchObject(skuList[i].spec , $scope.specificationItems)){
-				
-				$scope.sku = skuList[i];
-				
-				return;
-				
-			}
-			
-		}
-		
-		//没有匹配选项
-		$scope.sku={id:0,title:'',price:0}
-		
-	}
-	
-	
-	//====================================================================
-	//添加商品到购物车
-	$scope.addToCart=function(){
-		
-		alert("skuid:"+$scope.sku.id);
-		
-	}
-	
-	
-	
-	
+//鍟嗗搧璇︽儏椤碉紙鎺у埗灞傦級
+app.controller("itemController",function($scope , $http){
+
+    //鏁伴噺鎿嶄綔
+    $scope.addNum=function(x){
+
+        $scope.num = $scope.num + x ;
+
+        if($scope.num < 1){
+            $scope.num = 1 ;
+        }
+
+    }
+
+    //========================================================
+    //鍒濆鍖栬鏍奸�夋嫨
+    $scope.specificationItems={};
+
+    //鐢ㄦ埛閫夋嫨瑙勬牸
+    $scope.selectSpecification=function( name , value ){
+
+        $scope.specificationItems[name]=value;
+
+        //璇诲彇sku
+        searchSku();
+
+    }
+
+    //鍒ゆ柇瑙勬牸閫夐」鏄惁琚敤鎴烽�変腑
+    $scope.isSelected=function( name , value ){
+
+        if($scope.specificationItems[name] == value){
+            return true;
+        }
+
+        return false ;
+
+    }
+
+
+    //===========================================================
+    //鍔犺浇榛樿sku
+    $scope.loadSku=function(){
+
+        $scope.sku=skuList[0];
+
+        $scope.specificationItems=JSON.parse(JSON.stringify($scope.sku.spec));
+
+    }
+
+
+    //鍖归厤涓や釜瀵硅薄锛岄獙璇佹槸鍚︿负閫変腑
+    matchObject=function(map1,map2){
+
+        for (var k in map1){
+
+            if(map1[k] != map2[k]){
+                return false;
+            }
+
+        }
+
+        for (var k in map2){
+
+            if(map2[k] != map1[k]){
+                return false;
+            }
+
+        }
+
+        return true;
+
+    }
+
+    //鏌ヨ褰撳墠閫変腑SKU
+    searchSku=function(){
+
+        for(var i = 0 ; i < skuList.length ; i++){
+
+            if(matchObject(skuList[i].spec , $scope.specificationItems)){
+
+                $scope.sku = skuList[i];
+
+                return;
+
+            }
+
+        }
+
+        //娌℃湁鍖归厤閫夐」
+        $scope.sku={id:0,title:'',price:0}
+
+    }
+
+
+    //====================================================================
+    //娣诲姞鍟嗗搧鍒拌喘鐗╄溅
+    $scope.addToCart=function(){
+
+        $http.get("http://localhost:9107/cart/addGoodsToCartList.do?itemId="+$scope.sku.id+
+						"&num="+$scope.num,{'withCredentials':true}).success(
+
+				function (response) {
+					if (response.success){
+						location.href="http://localhost:9107/cart.html";
+					} else {
+						alert(response.message);
+					}
+                }
+
+		);
+
+    }
+
+
+
+
 });

@@ -12,7 +12,7 @@
     <artifactId>pinyougou-commom</artifactId>
 
     <dependencies>
-        <!--文件上传依赖-->
+        <!-- 文件上传组件 -->
         <dependency>
             <groupId>org.csource.fastdfs</groupId>
             <artifactId>fastdfs</artifactId>
@@ -21,7 +21,8 @@
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
         </dependency>
-        <!--缓存-->
+
+        <!-- 缓存 -->
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
@@ -29,6 +30,11 @@
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
